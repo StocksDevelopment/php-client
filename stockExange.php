@@ -1,5 +1,5 @@
 <?php
-class stockExange
+class StocksExchange
 {
     const DEBUG = FALSE;
     /* Valid keys while searching for transactions. */
@@ -20,7 +20,7 @@ class stockExange
             $this->_base_url = $base_url;
         }
     }
-    /* Make a call to the StockExange API. */
+    /* Make a call to the stocks.exchange API. */
     public function request($method, $params, $sign=TRUE, $post=TRUE) {
         $headers = array();
         if ($sign) {
@@ -61,7 +61,7 @@ class stockExange
         }
         return $data;
     }
-    /* StockExange Private API. */
+    /* StocksExchange Private API. */
     public function get_info() {
         return $this->request('GetInfo', array());
     }
@@ -222,7 +222,7 @@ class stockExange
         );
         return $this->request('Withdraw', $params);
     }
-    /* StockExange Public API. */
+    /* StocksExchange Public API. */
     public function get_currencies() {
         $client = new ApiController();
         $res = $client->getCurrencies();
@@ -276,8 +276,8 @@ class stockExange
         return $data;
     }
     public function ticker() {
-        //$_base_url = 'https://btc.bevolved.net/api2';
-        //$this->_base_url = 'https://btc.bevolved.net/api2/ticker/'.$currency1.'/'.$currency2;
+        //$_base_url = 'https://stocks.exchange/api2';
+        //$this->_base_url = 'https://stocks.exchange/api2/ticker/'.$currency1.'/'.$currency2;
         $client = new ApiController();
         $res = $client->ticker();
         if ($res) {
@@ -354,8 +354,8 @@ class stockExange
         }
         return $data;
     }
-} /* StockExange class. */
-/* Auxiliary function for sending signed requests to StockExange. */
+} /* StocksExchange class. */
+/* Auxiliary function for sending signed requests to StocksExchange. */
 function gen_nonce($length=9) {
     $b58 = "123456789";
     $nonce = '';
