@@ -46,4 +46,4 @@ There are two types of API errors when you handling an API request:
   4.    Duplicate Request - parameter Nonce is not unique
   5.    Invalid Method - this method is wrong or missing  	
 
-## For detailed information, please, visit our documentation: [Google Docs](https://docs.google.com/document/d/1mU8ecTlzfDtT1hmZJ-dXezMudLnfD4ZeNBr_oxFwdGI/edit?usp=sharing).
+## For detailed information, please, visit our [Documentation](http://help.stocks.exchange/api-integration).
