@@ -8,6 +8,9 @@ class StocksExchangeAutoLoader
         'services'
     );
 
+    /**
+     * StocksExchangeAutoLoader constructor.
+     */
     private function __construct()
     {
         if (function_exists('__autoload')) {
@@ -16,6 +19,10 @@ class StocksExchangeAutoLoader
         spl_autoload_register(array($this, 'addClass'));
     }
 
+    /**
+     * @return StocksExchangeAutoLoader
+     * @throws Exception
+     */
     public static function init()
     {
         if (!function_exists('spl_autoload_register')) {
@@ -27,6 +34,9 @@ class StocksExchangeAutoLoader
         return self::$loader;
     }
 
+    /**
+     * @param $class
+     */
     private function addClass($class)
     {
         foreach (self::$dirs as $key => $dir) {

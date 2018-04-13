@@ -17,12 +17,6 @@ class Service
     const ENCRYPT_ALGORITHM = 'sha512';
     const SLEEP_SECOND = 1;
 
-    private function __construct()
-    {
-
-    }
-
-
     /**
      * @return Service
      */
@@ -34,6 +28,14 @@ class Service
         return self::$resources;
     }
 
+    /**
+     * @param string $method
+     * @param array $params
+     * @param bool $post
+     * @param bool $sign
+     * @param string $url
+     * @return string
+     */
     public function request($method, $params = array() , $post = true, $sign = true, $url = '/')
     {
         sleep(Service::SLEEP_SECOND);

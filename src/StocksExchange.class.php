@@ -17,6 +17,14 @@ class StocksExchange
     public $api_secret = null;
     public $debug = null;
 
+    /**
+     * StocksExchange constructor.
+     * @param null $api_key
+     * @param null $api_secret
+     * @param null $base_url
+     * @param bool $debug
+     * @throws Exception
+     */
     public function __construct($api_key = null, $api_secret = null, $base_url = null, $debug = false)
     {
         self::$path = (dirname(__FILE__));
@@ -44,6 +52,10 @@ class StocksExchange
         self::$service->debug = $this->debug;
     }
 
+    /**
+     * @return StocksExchange
+     * @throws Exception
+     */
     public static function init()
     {
         if (self::$library == null) {
@@ -54,6 +66,9 @@ class StocksExchange
         return self::$library;
     }
 
+    /**
+     * @return bool
+     */
     private static function verifyDependencies()
     {
         $dependencies = true;
@@ -80,6 +95,9 @@ class StocksExchange
         return self::VERSION;
     }
 
+    /**
+     * @return string
+     */
     final public static function getPath()
     {
         return self::$path;
