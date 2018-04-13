@@ -20,5 +20,8 @@
     },
     "autoload": {
         "classmap": ["src/StocksExchangeLibrary.php"]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.2@dev"
     }
 }
