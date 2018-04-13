@@ -2,7 +2,7 @@
 class StocksExchange
 {
     const DEBUG = FALSE;
-    /* Valid keys while searching for transactions. */
+    /* Test */
     private static $SEARCH_CRITERIA = array('transaction_id', 'type',
         'currency', 'to', 'from', 'extOID', 'txhash');
     private $_base_url = 'https://stocks.exchange/api2';
