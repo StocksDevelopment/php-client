@@ -24,4 +24,8 @@
 require_once dirname(__FILE__).'/StocksExchange.class.php';
 require_once dirname(__FILE__).'/../vendor/autoload.php';
 
-StocksExchange::init();
+try {
+    StocksExchange::init();
+} catch (Exception $e) {
+    print_r($e);
+}
