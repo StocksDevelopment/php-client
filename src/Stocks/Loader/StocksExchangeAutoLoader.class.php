@@ -1,11 +1,16 @@
 <?php
 
+namespace Stocks\Loader;
+
+use Exception;
+use Stocks\StocksExchange;
+
 class StocksExchangeAutoLoader
 {
     public static $loader;
 
     private static $dirs = array(
-        'services'
+        'Services'
     );
 
     /**

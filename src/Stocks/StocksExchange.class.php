@@ -1,9 +1,15 @@
 <?php
 
+namespace Stocks;
+
+use Exception;
+use Stocks\Loader\StocksExchangeAutoLoader;
+use Stocks\Services\Service;
+
 class StocksExchange
 {
 
-    const VERSION = "0.0.1";
+    const VERSION = "1.0.0";
     const ALL = 'ALL';
     const ORDER = 'ASC';
     const DEFAULT_COUNT = 50;
@@ -17,13 +23,14 @@ class StocksExchange
     public $api_secret = null;
     public $debug = null;
 
+
     /**
      * StocksExchange constructor.
      * @param null $api_key
      * @param null $api_secret
      * @param null $base_url
      * @param bool $debug
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct($api_key = null, $api_secret = null, $base_url = null, $debug = false)
     {
@@ -52,9 +59,10 @@ class StocksExchange
         self::$service->debug = $this->debug;
     }
 
+
     /**
      * @return StocksExchange
-     * @throws Exception
+     * @throws \Exception
      */
     public static function init()
     {
@@ -559,7 +567,9 @@ class StocksExchange
             $data['end'] = $params['end'];
             $data['order'] = StocksExchange::ORDER;
         }
+
         $get_data = http_build_query($data, '', '&');
+
         return self::$service->request('GraficPublic', null, false, false, '/grafic_public?' . $get_data);
     }
 }

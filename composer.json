@@ -1,27 +1,34 @@
 {
     "name": "stocks_exchange/php-client",
-    "description": "StocksExchange provides all the core exchange functionality, and additional merchant tools available via the HTTP API where all returned messages are in JSON. It's much easier to work with the API by using one of the clients provided by StocksExchange (now available only in PHP), so while this page describes the API in case you want or need to build your own client, the examples use the PHP client.",
+    "homepage": "https://github.com/StocksExchange/php-client",
+    "description": "Stocks.Exchange provides all the core exchange functionality, and additional merchant tools available via the HTTP API where all returned messages are in JSON. It's much easier to work with the API by using one of the clients provided by StocksExchange (now available only in PHP), so while this page describes the API in case you want or need to build your own client, the examples use the PHP client.",
     "type": "library",
+    "keywords": ["stocks.exchange","php-client", "api"],
     "license": "Apache License 2.0",
     "authors": [
         {
-            "name": "StocksExchange",
-            "email": "support@stocks.exchange"
+            "name": "Stocks.Exchange",
+            "email": "support@stocks.exchange",
+            "role": "Developers"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.27",
-        "ext-curl": "*",
-        "lib-curl": "*",
-        "lib-openssl": "*",
-        "lib-libxml": "*",
         "guzzlehttp/guzzle": "^5.0"
     },
     "autoload": {
-        "classmap": ["src/StocksExchangeLibrary.php"]
+        "psr-4": {
+            "Stocks\\": "src/Stocks/"
+        }
     },
     "require-dev": {
         "phpunit/phpunit": "^7.2@dev"
+    },
+    "minimum-stability": "dev",
+    "scripts": {
+        "test-php": "phpunit --colors"
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }

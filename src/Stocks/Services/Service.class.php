@@ -1,5 +1,7 @@
 <?php
 
+namespace Stocks\Services;
+
 use GuzzleHttp\Client;
 
 class Service
@@ -28,13 +30,14 @@ class Service
         return self::$resources;
     }
 
+
     /**
      * @param string $method
      * @param array $params
      * @param bool $post
      * @param bool $sign
      * @param string $url
-     * @return string
+     * @return mixed|string
      */
     public function request($method, $params = array() , $post = true, $sign = true, $url = '/')
     {
@@ -75,7 +78,7 @@ class Service
                     $options
                 );
             }
-            $response = $request->getBody()->getContents();
+            $response = json_decode($request->getBody());
         } catch (\Exception $e) {
             $response = $e->getMessage();
         }
