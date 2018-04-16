@@ -37,7 +37,7 @@ $stocks = new StocksExchange($key, $secret, 'https://stocks.exchange/api2', fals
 $stocks->getInfo();
 
 ```
-####Response
+###Response
 ```
 => stdClass Object
    (
