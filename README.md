@@ -8,7 +8,7 @@ Stocks.Exchange provides all the core exchange functionality, and additional mer
 ## General
 The base URL for all the requests other than public methods is 
 ```php
-https://stocks.exchange/api2.
+https://stocks.exchange/api2
 ```
 
 ## Getting started
