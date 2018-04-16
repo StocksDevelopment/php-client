@@ -2,7 +2,7 @@
 Stocks.Exchange provides all the core exchange functionality, and additional merchant tools available via the HTTP API where all returned messages are in JSON. It's much easier to work with the API by using one of the clients provided by Stocks.Exchange (now available only in PHP), so while this page describes the API in case you want or need to build your own client, the examples use the PHP client.
 ## Requirements
 - PHP >= 5.4.27
-## Supported Libraries
+## De Libraries
 - Guzzle, PHP HTTP client (^5.0)
 
 ## General
@@ -20,7 +20,7 @@ To get started with the PHP client, here's a snippet for creating a client with 
 The limited testing can be done through the [sandbox page](https://stocks.exchange/testapi). 
 
 ## Usage
-Stocks.Exchange doesn't require Laravel or any other framework at all. If you want to use it as is, you just have to require the composer autoload file to instatiate Stocks.Exchange objects as shown in the following example.
+If you want to use it as is, you just have to require the composer autoload file to instatiate Stocks.Exchange objects as shown in the following example.
 ### Example
 ```php
 <?php
@@ -37,8 +37,6 @@ $stocks = new StocksExchange($key, $secret, 'https://stocks.exchange/api2', fals
 $stocks->getInfo();
 
 ```
-
-###Response
 
 ```
 => stdClass Object
