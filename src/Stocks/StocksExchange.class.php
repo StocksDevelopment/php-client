@@ -417,6 +417,13 @@ class StocksExchange
     }
 
 
+    /**
+     * @param $subject
+     * @param int $ticket_category
+     * @param $message
+     * @param array $other
+     * @return mixed|string
+     */
     final public function setTicket($subject, $ticket_category = 5, $message, $other = [])
     {
         $params = array(
