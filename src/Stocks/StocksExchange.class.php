@@ -416,13 +416,8 @@ class StocksExchange
         return self::$service->request('Withdraw', $params);
     }
 
-    /**
-     * @param string $subject
-     * @param int $ticket_category
-     * @param string $message
-     * @return string
-     */
-    final public function setTicket($subject, $ticket_category = 5, $message)
+
+    final public function setTicket($subject, $ticket_category = 5, $message, $other = [])
     {
         $params = array(
             'subject' => $subject,
@@ -430,7 +425,7 @@ class StocksExchange
             'message' => $message
         );
 
-        return self::$service->request('Ticket', $params);
+        return self::$service->request('Ticket', array_merge($params,$other));
     }
 
     /**
