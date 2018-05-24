@@ -19,8 +19,8 @@ class BasicTest extends TestCase
         $this->start_date = time();
         $this->end_date = $this->start_date - (24 * 60 * 60 * 2);
 
-        $this->key = $_ENV["key"];
-        $this->secret = $_ENV["secret"];
+        $this->key = getenv("key");
+        $this->secret = getenv("secret");
 
         $this->object = new StocksExchange($this->key, $this->secret, null, false);
     }
