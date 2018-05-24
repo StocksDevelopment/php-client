@@ -6,8 +6,6 @@ php:
   - 5.6
   - 7.0
   - 7.1
-  - nightly
-  - hhvm
 
 before_script:
 - pear install --alldeps pear/PHP_CodeSniffer

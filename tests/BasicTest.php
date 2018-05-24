@@ -8,7 +8,6 @@ use Stocks\StocksExchange;
 class BasicTest extends TestCase
 {
     protected $object;
-    protected $config;
 
     protected $key;
     protected $secret;
@@ -19,10 +18,9 @@ class BasicTest extends TestCase
     protected function setUp() {
         $this->start_date = time();
         $this->end_date = $this->start_date - (24 * 60 * 60 * 2);
-        $this->config = parse_ini_file("config.ini",true);
 
-        $this->key = $this->config['auth']['key'];
-        $this->secret = $this->config['auth']['secret'];
+        $this->key = $_ENV["key"];
+        $this->secret = $_ENV["secret"];
 
         $this->object = new StocksExchange($this->key, $this->secret, null, false);
     }
