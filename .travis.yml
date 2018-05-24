@@ -16,7 +16,3 @@ before_script:
 script:
 - phpunit -c ./phpunit.xml
 - phpcs --extensions=php -p --standard=PSR2 ./
-
-notifications:
-  slack:
-    secure: ***
