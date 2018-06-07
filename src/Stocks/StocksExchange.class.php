@@ -138,17 +138,28 @@ class StocksExchange
      * @return string
      */
     final public function getActiveOrders(
-        $pair = StocksExchange::ALL,
+        $pair = null,
         $from = null,
-        $count = StocksExchange::DEFAULT_COUNT,
+        $count = null,
         $from_id = null,
         $end_id = null,
-        $order = StocksExchange::ORDER,
+        $order = null,
         $since = null,
         $end = null,
-        $type = StocksExchange::ALL,
-        $owner = StocksExchange::ALL
+        $type = null,
+        $owner = null
     ) {
+        if(is_null($pair))
+            $pair = StocksExchange::ALL;
+        if(is_null($count))
+            $count = StocksExchange::DEFAULT_COUNT;
+        if(is_null($order))
+            $order = StocksExchange::ORDER;
+        if(is_null($type))
+            $type = StocksExchange::ALL;
+        if(is_null($owner))
+            $owner = StocksExchange::ALL;
+
         $params = array(
             'pair' => $pair,
             'count' => $count,
@@ -220,17 +231,28 @@ class StocksExchange
      * @return string
      */
     final public function getTradeHistory(
-        $pair = StocksExchange::ALL,
+        $pair = null,
         $from = null,
-        $count = StocksExchange::DEFAULT_COUNT,
+        $count = null,
         $from_id = null,
         $end_id = null,
-        $order = StocksExchange::ORDER,
+        $order = null,
         $since = null,
         $end = null,
-        $status = 3,
-        $owner = StocksExchange::ALL
+        $status = null,
+        $owner = null
     ) {
+        if(is_null($pair))
+            $pair = StocksExchange::ALL;
+        if(is_null($count))
+            $count = StocksExchange::DEFAULT_COUNT;
+        if(is_null($order))
+            $order = StocksExchange::ORDER;
+        if(is_null($status))
+            $status = 3;
+        if(is_null($owner))
+            $owner = StocksExchange::ALL;
+
         $params = array(
             'pair' => $pair,
             'count' => $count,
@@ -264,8 +286,11 @@ class StocksExchange
      * @param int $end
      * @return string
      */
-    final public function getTradeRegisterHistory($currency = StocksExchange::ALL, $since = null, $end = null)
+    final public function getTradeRegisterHistory($currency = null, $since = null, $end = null)
     {
+        if(is_null($currency))
+            $currency = StocksExchange::ALL;
+
         $params = array(
             'currency' => $currency
         );
@@ -310,17 +335,28 @@ class StocksExchange
      * @return string
      */
     final public function getTransHistory(
-        $currency = StocksExchange::ALL,
+        $currency = null,
         $from = null,
-        $count = StocksExchange::DEFAULT_COUNT,
+        $count = null,
         $from_id = null,
         $end_id = null,
-        $order = 'DESC',
+        $order = null,
         $since = null,
         $end = null,
-        $operation = StocksExchange::ALL,
-        $status = 'FINISHED'
+        $operation = null,
+        $status = null
     ) {
+        if(is_null($currency))
+            $currency = StocksExchange::ALL;
+        if(is_null($count))
+            $count = StocksExchange::DEFAULT_COUNT;
+        if(is_null($order))
+            $order = 'DESC';
+        if(is_null($operation))
+            $operation = StocksExchange::ALL;
+        if(is_null($status))
+            $status = 'FINISHED';
+
         $params = array(
             'currency' => $currency,
             'count' => $count,
@@ -426,6 +462,9 @@ class StocksExchange
      */
     final public function setTicket($subject, $ticket_category = 5, $message, $other = [])
     {
+        if(is_null($ticket_category))
+            $ticket_category = 5;
+
         $params = array(
             'subject' => $subject,
             'ticket_category_id' => $ticket_category,
@@ -463,8 +502,11 @@ class StocksExchange
      * @param string $message
      * @return string
      */
-    final public function setReplyTicket($ticket_id, $message = '')
+    final public function setReplyTicket($ticket_id, $message = null)
     {
+        if(is_null($message))
+            $message = '';
+
         $params = array(
             'ticket_id' => $ticket_id,
             'message' => $message
@@ -510,8 +552,13 @@ class StocksExchange
      * @param string $currency2
      * @return string
      */
-    final public function getMarketSummary($currency1 = 'BTC', $currency2 = 'BTC')
+    final public function getMarketSummary($currency1 = null, $currency2 = null)
     {
+        if(is_null($currency1))
+            $currency1 = 'BTC';
+        if(is_null($currency2))
+            $currency2 = 'USDT';
+
         return self::$service->request('GetMarketSummary', null, false, false,
             '/market_summary/' . $currency1 . '/' . $currency2);
     }
@@ -536,8 +583,11 @@ class StocksExchange
      * @param string $pair
      * @return string
      */
-    final public function getTradeHistoryPublic($pair = 'STEX_BTC')
+    final public function getTradeHistoryPublic($pair = null)
     {
+        if(is_null($pair))
+            $pair = 'STEX_BTC';
+
         return self::$service->request('TradeHistoryPublic', null, false, false, '/trades?pair=' . $pair);
     }
 
@@ -545,8 +595,11 @@ class StocksExchange
      * @param string $pair
      * @return string
      */
-    final public function getOrderBook($pair = 'STEX_BTC')
+    final public function getOrderBook($pair = null)
     {
+        if(is_null($pair))
+            $pair = 'STEX_BTC';
+
         return self::$service->request('OrderBook', null, false, false, '/orderbook?pair=' . $pair);
     }
 
