@@ -190,8 +190,8 @@ class StocksExchange
     /**
      * @param string $type
      * @param string $pair
-     * @param float $amount
-     * @param float $rate
+     * @param string $amount
+     * @param string $rate
      * @return string
      */
     final public function setTrade($type, $pair, $amount, $rate)
