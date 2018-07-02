@@ -39,7 +39,7 @@ class Service
      * @param string $url
      * @return mixed|string
      */
-    public function request($method, $params = array() , $post = true, $sign = true, $url = '/')
+    public function request($method, $params = array() , $post = true, $sign = true, $url = '')
     {
         sleep(Service::SLEEP_SECOND);
 
