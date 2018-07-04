@@ -18,7 +18,7 @@ class StocksExchange
     private static $library;
     private static $service;
 
-    public $base_url = 'https://stocks.exchange/api2';
+    public $base_url = 'https://app.stocks.exchange/api2';
     public $api_key = null;
     public $api_secret = null;
     public $debug = null;
