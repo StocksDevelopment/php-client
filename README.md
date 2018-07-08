@@ -8,7 +8,7 @@ Stocks.Exchange provides all the core exchange functionality, and additional mer
 ## General
 The base URL for all the requests other than public methods is 
 ```php
-https://stocks.exchange/api2
+https://app.stocks.exchange/api2
 ```
 
 ## Getting started
@@ -21,6 +21,13 @@ The limited testing can be done through the [sandbox page](https://stocks.exchan
 
 ## Usage
 If you want to use it as is, you just have to require the composer autoload file to instatiate Stocks.Exchange objects as shown in the following example.
+Go to the folder where the library is located and run terminal command in console
+
+```
+composer install -o
+```
+After install use for example this code!
+
 ### Example
 ```php
 <?php
@@ -32,7 +39,7 @@ require dirname(__FILE__).'/vendor/autoload.php';
 $key = '1234567890'; // API key sample
 $secret = '1234567890'; // API secret sample
 // create an StocksExchange instance with API key, API secret, URL and DEBUG
-$stocks = new StocksExchange($key, $secret, 'https://stocks.exchange/api2', false);
+$stocks = new StocksExchange($key, $secret, 'https://app.stocks.exchange/api2', false);
 // Private method getInfo()
 $stocks->getInfo();
 
