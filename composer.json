@@ -4,7 +4,7 @@
     "description": "Stocks.Exchange provides all the core exchange functionality, and additional merchant tools available via the HTTP API where all returned messages are in JSON. It's much easier to work with the API by using one of the clients provided by StocksExchange (now available only in PHP), so while this page describes the API in case you want or need to build your own client, the examples use the PHP client.",
     "type": "library",
     "keywords": ["stocks.exchange","php-client", "api"],
-    "license": "Apache License 2.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "Stocks.Exchange",
