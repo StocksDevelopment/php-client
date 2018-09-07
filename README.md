@@ -17,14 +17,12 @@ https://app.stocks.exchange/api2
 To get started with the PHP client, here's a snippet for creating a client with existing credentials:
 > In order to use the API functions, you must have an API key and API secret, which is generated in the user profile.
 
-The limited testing can be done through the [sandbox page](https://stocks.exchange/testapi). 
-
 ## Usage
 If you want to use it as is, you just have to require the composer autoload file to instatiate Stocks.Exchange objects as shown in the following example.
 Go to the folder where the library is located and run terminal command in console
 
 ```
-composer install -o
+composer require stocks_exchange/php-client
 ```
 After install use for example this code!
 
