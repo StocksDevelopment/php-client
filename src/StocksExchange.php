@@ -36,7 +36,7 @@ class StocksExchange
     {
         self::$path = (dirname(__FILE__));
 
-        StocksExchangeAutoLoader::init();
+//        StocksExchangeAutoLoader::init();
 
         self::$service = Service::init();
 
@@ -67,7 +67,7 @@ class StocksExchange
     public static function init()
     {
         if (self::$library == null) {
-            require_once "loader" . DIRECTORY_SEPARATOR . "StocksExchangeAutoLoader.class.php";
+//            require_once "loader" . DIRECTORY_SEPARATOR . "StocksExchangeAutoLoader.class.php";
             self::verifyDependencies();
             self::$library = new StocksExchange();
         }
