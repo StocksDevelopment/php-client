@@ -22,7 +22,11 @@ class BasicTest extends TestCase
         $this->key = getenv("key");
         $this->secret = getenv("secret");
 
-        $this->object = new StocksExchange($this->key, $this->secret, null, false);
+        try {
+            $this->object = new StocksExchange($this->key, $this->secret, null, false);
+        } catch (Exception $e) {
+            echo $e;
+        }
     }
 
     /**

@@ -3,9 +3,13 @@
 namespace Stocks;
 
 use Exception;
-use Stocks\Loader\StocksExchangeAutoLoader;
 use Stocks\Services\Service;
+use RuntimeException;
 
+/**
+ * Class Stocks
+ * @package Stocks
+ */
 class StocksExchange
 {
 
@@ -36,7 +40,7 @@ class StocksExchange
     {
         self::$path = (dirname(__FILE__));
 
-//        StocksExchangeAutoLoader::init();
+//        StocksAutoLoader::init();
 
         self::$service = Service::init();
 
@@ -67,7 +71,7 @@ class StocksExchange
     public static function init()
     {
         if (self::$library == null) {
-//            require_once "loader" . DIRECTORY_SEPARATOR . "StocksExchangeAutoLoader.class.php";
+//            require_once "loader" . DIRECTORY_SEPARATOR . "StocksAutoLoader.class.php";
             self::verifyDependencies();
             self::$library = new StocksExchange();
         }
@@ -83,11 +87,11 @@ class StocksExchange
         try {
             if (!function_exists('curl_init')) {
                 $dependencies = false;
-                throw new Exception('StocksExchangeLibrary: cURL library is required.');
+                throw new RuntimeException('StocksExchange: cURL library is required.');
             }
             if (!class_exists('DOMDocument')) {
                 $dependencies = false;
-                throw new Exception('StocksExchangeLibrary: DOM XML extension is required.');
+                throw new RuntimeException('StocksExchange: DOM XML extension is required.');
             }
         } catch (Exception $e) {
             return $dependencies;
@@ -149,16 +153,21 @@ class StocksExchange
         $type = null,
         $owner = null
     ) {
-        if(is_null($pair))
+        if (is_null($pair)) {
             $pair = StocksExchange::ALL;
-        if(is_null($count))
+        }
+        if (is_null($count)) {
             $count = StocksExchange::DEFAULT_COUNT;
-        if(is_null($order))
+        }
+        if (is_null($order)) {
             $order = StocksExchange::ORDER;
-        if(is_null($type))
+        }
+        if (is_null($type)) {
             $type = StocksExchange::ALL;
-        if(is_null($owner))
+        }
+        if (is_null($owner)) {
             $owner = StocksExchange::ALL;
+        }
 
         $params = array(
             'pair' => $pair,
@@ -242,16 +251,21 @@ class StocksExchange
         $status = null,
         $owner = null
     ) {
-        if(is_null($pair))
+        if (is_null($pair)) {
             $pair = StocksExchange::ALL;
-        if(is_null($count))
+        }
+        if (is_null($count)) {
             $count = StocksExchange::DEFAULT_COUNT;
-        if(is_null($order))
+        }
+        if (is_null($order)) {
             $order = StocksExchange::ORDER;
-        if(is_null($status))
+        }
+        if (is_null($status)) {
             $status = 3;
-        if(is_null($owner))
+        }
+        if (is_null($owner)) {
             $owner = StocksExchange::ALL;
+        }
 
         $params = array(
             'pair' => $pair,
@@ -288,8 +302,9 @@ class StocksExchange
      */
     final public function getTradeRegisterHistory($currency = null, $since = null, $end = null)
     {
-        if(is_null($currency))
+        if (is_null($currency)) {
             $currency = StocksExchange::ALL;
+        }
 
         $params = array(
             'currency' => $currency
@@ -346,16 +361,21 @@ class StocksExchange
         $operation = null,
         $status = null
     ) {
-        if(is_null($currency))
+        if (is_null($currency)) {
             $currency = StocksExchange::ALL;
-        if(is_null($count))
+        }
+        if (is_null($count)) {
             $count = StocksExchange::DEFAULT_COUNT;
-        if(is_null($order))
+        }
+        if (is_null($order)) {
             $order = 'DESC';
-        if(is_null($operation))
+        }
+        if (is_null($operation)) {
             $operation = StocksExchange::ALL;
-        if(is_null($status))
+        }
+        if (is_null($status)) {
             $status = 'FINISHED';
+        }
 
         $params = array(
             'currency' => $currency,
@@ -462,8 +482,9 @@ class StocksExchange
      */
     final public function setTicket($subject, $ticket_category = 5, $message, $other = [])
     {
-        if(is_null($ticket_category))
+        if (is_null($ticket_category)) {
             $ticket_category = 5;
+        }
 
         $params = array(
             'subject' => $subject,
@@ -471,7 +492,7 @@ class StocksExchange
             'message' => $message
         );
 
-        return self::$service->request('Ticket', array_merge($params,$other));
+        return self::$service->request('Ticket', array_merge($params, $other));
     }
 
     /**
@@ -504,8 +525,9 @@ class StocksExchange
      */
     final public function setReplyTicket($ticket_id, $message = null)
     {
-        if(is_null($message))
+        if (is_null($message)) {
             $message = '';
+        }
 
         $params = array(
             'ticket_id' => $ticket_id,
@@ -554,10 +576,12 @@ class StocksExchange
      */
     final public function getMarketSummary($currency1 = null, $currency2 = null)
     {
-        if(is_null($currency1))
+        if (is_null($currency1)) {
             $currency1 = 'BTC';
-        if(is_null($currency2))
+        }
+        if (is_null($currency2)) {
             $currency2 = 'USDT';
+        }
 
         return self::$service->request('GetMarketSummary', null, false, false,
             '/market_summary/' . $currency1 . '/' . $currency2);
@@ -585,8 +609,9 @@ class StocksExchange
      */
     final public function getTradeHistoryPublic($pair = null)
     {
-        if(is_null($pair))
+        if (is_null($pair)) {
             $pair = 'STEX_BTC';
+        }
 
         return self::$service->request('TradeHistoryPublic', null, false, false, '/trades?pair=' . $pair);
     }
@@ -597,8 +622,9 @@ class StocksExchange
      */
     final public function getOrderBook($pair = null)
     {
-        if(is_null($pair))
+        if (is_null($pair)) {
             $pair = 'STEX_BTC';
+        }
 
         return self::$service->request('OrderBook', null, false, false, '/orderbook?pair=' . $pair);
     }

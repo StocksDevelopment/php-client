@@ -14,7 +14,8 @@
     ],
     "require": {
         "php": ">=5.4.27",
-        "guzzlehttp/guzzle": "^5.0"
+        "guzzlehttp/guzzle": "^5.0",
+        "ext-json" : "*"
     },
     "autoload": {
         "psr-4": {
@@ -27,8 +28,5 @@
     "minimum-stability": "dev",
     "scripts": {
         "test-php": "phpunit --colors"
-    },
-    "config": {
-        "optimize-autoloader": true
     }
 }

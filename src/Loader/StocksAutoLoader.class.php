@@ -3,9 +3,11 @@
 namespace Stocks\Loader;
 
 use Exception;
+use RuntimeException;
 use Stocks\StocksExchange;
 
-class StocksExchangeAutoLoader
+
+class StocksAutoLoader
 {
     public static $loader;
 
@@ -25,16 +27,16 @@ class StocksExchangeAutoLoader
     }
 
     /**
-     * @return StocksExchangeAutoLoader
+     * @return StocksAutoLoader
      * @throws Exception
      */
     public static function init()
     {
         if (!function_exists('spl_autoload_register')) {
-            throw new Exception("StocksExchangeLibrary: Standard PHP Library (SPL) is required.");
+            throw new RuntimeException("StocksExchangeLibrary: Standard PHP Library (SPL) is required.");
         }
         if (self::$loader == null) {
-            self::$loader = new StocksExchangeAutoLoader();
+            self::$loader = new StocksAutoLoader();
         }
         return self::$loader;
     }
