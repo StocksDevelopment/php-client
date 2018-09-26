@@ -13,7 +13,7 @@ https://app.stex.com/api2
 ```
 
 ## Getting started
--[Documentation](http://help.stocks.exchange/api-integration).
+-[Documentation](http://help.stex.com/api-integration).
 
 To get started with the PHP client, here's a snippet for creating a client with existing credentials:
 > In order to use the API functions, you must have an API key and API secret, which is generated in the user profile.
