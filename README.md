@@ -1,5 +1,5 @@
-# Stocks.Exchange (PHP API client)
-Stocks.Exchange provides all the core exchange functionality, and additional merchant tools available via the HTTP API where all returned messages are in JSON. It's much easier to work with the API by using one of the clients provided by Stocks.Exchange (now available only in PHP), so while this page describes the API in case you want or need to build your own client, the examples use the PHP client.
+# STEX ( former Stocks.Exchange) (PHP API client)
+STEX ( former Stocks.Exchange) provides all the core exchange functionality, and additional merchant tools available via the HTTP API where all returned messages are in JSON. It's much easier to work with the API by using one of the clients provided by Stocks.Exchange (now available only in PHP), so while this page describes the API in case you want or need to build your own client, the examples use the PHP client.
 ## Requirements
 - PHP >= 5.4.27
 ## Dependent Libraries
@@ -9,6 +9,7 @@ Stocks.Exchange provides all the core exchange functionality, and additional mer
 The base URL for all the requests other than public methods is 
 ```php
 https://app.stocks.exchange/api2
+https://app.stex.com/api2
 ```
 
 ## Getting started
