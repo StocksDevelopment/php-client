@@ -3,6 +3,8 @@
 namespace Stocks\Services;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Cookie\FileCookieJar;
+use Tuna\CloudflareMiddleware;
 
 class Service
 {
@@ -43,7 +45,8 @@ class Service
     {
         sleep(Service::SLEEP_SECOND);
 
-        $client = new Client();
+        $client = new Client(['cookies' => new FileCookieJar('cookies.txt')]);
+        $client->getConfig('handler')->push(CloudflareMiddleware::create());
 
         $params = is_null($params) ? array() : $params;
 

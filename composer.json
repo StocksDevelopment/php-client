@@ -14,8 +14,9 @@
     ],
     "require": {
         "php": ">=5.4.27",
-        "guzzlehttp/guzzle": "^5.0",
-        "ext-json" : "*"
+        "ext-json" : "*",
+        "guzzlehttp/guzzle": "^6.3@dev",
+        "tunaabutbul/cloudflare-middleware": "dev-master"
     },
     "autoload": {
         "psr-4": {
