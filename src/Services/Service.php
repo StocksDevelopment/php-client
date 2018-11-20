@@ -45,7 +45,9 @@ class Service
     {
         sleep(Service::SLEEP_SECOND);
 
-        $client = new Client(['cookies' => new FileCookieJar('cookies.txt')]);
+        $client = new Client([
+            'cookies' => new FileCookieJar('cookies.txt')
+        ]);
         $client->getConfig('handler')->push(CloudflareMiddleware::create());
 
         $params = is_null($params) ? array() : $params;
@@ -59,9 +61,9 @@ class Service
                 'debug' => $this->debug,
                 'headers' => array(
                     'Key' => $this->api_key,
-                    'Sign' => $sign
+                    'Sign' => $sign,
                 ),
-                'body' => $params
+                'form_params' => $params,
             );
         }else{
             $options = array(
