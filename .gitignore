@@ -1,3 +1,5 @@
 /vendor/
 /composer.lock
 /tests/config.ini
+cookies.txt
+settings.json

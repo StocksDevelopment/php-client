@@ -2,7 +2,7 @@
 
 
 use PHPUnit\Framework\TestCase;
-use Stocks\StocksExchange;
+use Stocks\ApiVersion\Two;
 
 
 class BasicTest extends TestCase
@@ -23,7 +23,7 @@ class BasicTest extends TestCase
         $this->secret = getenv("secret");
 
         try {
-            $this->object = new StocksExchange($this->key, $this->secret, null, false);
+            $this->object = new Two($this->key, $this->secret, null, false);
         } catch (Exception $e) {
             echo $e;
         }
@@ -34,31 +34,7 @@ class BasicTest extends TestCase
      */
     public function testDependencies()
     {
-        $this->assertInstanceOf(StocksExchange::class, $this->object);
-    }
-
-    /**
-     *TEST PRIVATE METHOD API
-     */
-    public function testGetInfo()
-    {
-        $info = $this->object->getInfo();
-        $this->assertTrue(is_int($info->success));
-        $this->greaterThan(0);
-        $this->assertNotEmpty($info->data);
-    }
-
-
-    /**
-     *TEST PUBLIC METHOD API
-     */
-    public function testGetOrderBook()
-    {
-        $info = $this->object->getOrderBook();
-        $this->assertTrue(is_int($info->success));
-        $this->greaterThan(0);
-        $this->assertNotEmpty($info->result->buy);
-        $this->assertNotEmpty($info->result->sell);
+        $this->assertInstanceOf(Two::class, $this->object);
     }
 
     /**
@@ -67,8 +43,9 @@ class BasicTest extends TestCase
     public function testGetVersion()
     {
         $version = $this->object->getVersion();
+        $composer_version = json_decode(file_get_contents('./../composer.json'));
         $this->assertInternalType('string', $version);
-        $this->assertTrue($version == StocksExchange::VERSION);
+        $this->assertTrue($version == $composer_version->version);
     }
 
 

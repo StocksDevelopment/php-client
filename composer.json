@@ -5,6 +5,7 @@
     "type": "library",
     "keywords": ["stocks.exchange","php-client", "api", "stex.com", "stex"],
     "license": "MIT",
+    "version": "2.0.0",
     "authors": [
         {
             "name": "STEX",

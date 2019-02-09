@@ -8,18 +8,22 @@ use Tuna\CloudflareMiddleware;
 
 class Service
 {
-    /**
-     * @var
-     */
     private static $resources;
 
     public $base_url;
+
+    // Params API V2
     public $api_key;
     public $api_secret;
     public $debug;
 
     const ENCRYPT_ALGORITHM = 'sha512';
     const SLEEP_SECOND = 1;
+
+    // Params API V3
+    public $option;
+    public $client_id;
+    public $client_secret;
 
     /**
      * @return Service
@@ -103,7 +107,7 @@ class Service
      * @param $params
      * @return string
      */
-    private function buildQuery($params)
+    public function buildQuery($params)
     {
         return http_build_query($params, '', '&');
     }
