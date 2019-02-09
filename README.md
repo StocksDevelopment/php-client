@@ -10,10 +10,12 @@ The base URL for all the requests other than public methods is
 ```php
 https://app.stocks.exchange/api2
 https://app.stex.com/api2
+https://api3.stex.com
 ```
 
 ## Getting started
--[Documentation](http://help.stex.com/api-integration).
+- [Documentation API V2](http://help.stex.com/api-integration).
+- [Sandbox API V3](https://apidocs.stex.com).
 
 To get started with the PHP client, here's a snippet for creating a client with existing credentials:
 > In order to use the API functions, you must have an API key and API secret, which is generated in the user profile.
@@ -27,18 +29,18 @@ composer require stocks_exchange/php-client
 ```
 After install use for example this code!
 
-### Example
+### Example API V2
 ```php
 <?php
 // import the StocksExchange Class
-use Stocks\StocksExchange;
+use Stocks\ApiVersion\Two;
 // include composer autoload
 require dirname(__FILE__).'/vendor/autoload.php';
 
 $key = '1234567890'; // API key sample
 $secret = '1234567890'; // API secret sample
 // create an StocksExchange instance with API key, API secret, URL and DEBUG
-$stocks = new StocksExchange($key, $secret, 'https://app.stocks.exchange/api2', false);
+$stocks = new Two($key, $secret, 'https://app.stocks.exchange/api2', false);
 // Private method getInfo()
 $stocks->getInfo();
 
@@ -127,6 +129,63 @@ getPrices() // Use it to get the new retail exchange rates for all currency pair
 getTradeHistoryPublic() // Used to retrieve the latest trades that have occurred for a specific market. 
 getOrderBook() // Used to get retrieve the orderbook for a given market.
 getGraficPublic() // Get information about trade statistic
+```
+
+### Example V3
+```php
+<?php
+use Stocks\ApiVersion\Three;
+$se = new Three(
+    1, // Client ID
+    'ssss', // // Client Secret
+    [
+        'tokenObject' => [
+            'access_token' => '',
+            'refresh_token' => ''
+        ],
+        'accessTokenUrl' => 'https://api3.stex.com/oauth/token',
+        'scope' => 'trade profile reports withdrawal'
+    ],
+    null,
+    false
+);
+print_r($se->publicPing());
+```
+## Lists Methods
+```
+profileInfo() // Get general information about the current user.
+wallets() // Get a list of user wallets.
+walletsById() // Single wallet information            
+addWalletsByCurrencyId() // Create a wallet for given currency
+getWalletsAddress() // Get deposit address for given wallet
+newWalletsAddress() // Create new deposit address
+deposits() // Get a list of deposits made by user
+depositsById() // Get deposit by id
+withdrawals() // Get a list of withdrawals made by user
+withdrawalsById() // Get withdrawal by id
+addWithdrawal() // Create withdrawal request
+cancelWithdrawalById() // Cancel unconfirmed withdrawal
+reportsOrders() // Get past orders
+reportsOrdersById() // Get specified order details
+allTradingOrders() // List your currently open orders
+deleteAllTradingOrders() // Delete all active orders 
+tradingOrdersByPair() // List your currently open orders for given currency pair 
+deleteTradingOrdersByPair() // Delete active orders for given currency pair
+addTradingOrdersByPair() // Create new order and put it to the orders processing queue
+tradingOrderById() // Get a single order
+deleteTradingOrderById() // Cancel order                   
+                         
+publicCurrencies() // Available Currencies
+publicCurrenciesById() // Get currency info   
+publicMarkets() // Available markets 
+publicCurrencyPairsList() // Available currency pairs
+publicCurrencyPairsById() // Get currency pair information 
+publicTicker() // Tickers list for all currency pairs
+publicTickerById() // Ticker for currency pair
+publicTrades() // Trades for given currency pair  
+publicOrderBook() // Orderbook for given currency pair
+publicChart() // A list of candles for given currency pair
+publicPing() // Test API is working and get server time
 ```
 ## Common Errors
 ### Here is a list with common errors and their descriptions:
