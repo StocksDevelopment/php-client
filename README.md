@@ -146,8 +146,8 @@ $se = new Three(
         'accessTokenUrl' => 'https://api3.stex.com/oauth/token',
         'scope' => 'trade profile reports withdrawal'
     ],
-    null,
-    false
+    null, // URL
+    false // Debug
 );
 print_r($se->publicPing());
 ```
