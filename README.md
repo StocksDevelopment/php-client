@@ -3,7 +3,8 @@ STEX ( former Stocks.Exchange) provides all the core exchange functionality, and
 ## Requirements
 - PHP >= 5.4.27
 ## Dependent Libraries
-- Guzzle, PHP HTTP client (^5.0)
+- "guzzlehttp/guzzle": "^6.3@dev",
+- "tunaabutbul/cloudflare-middleware": "v1.2"
 
 ## General
 The base URL for all the requests other than public methods is 
@@ -152,6 +153,7 @@ $se = new Three(
 print_r($se->publicPing());
 ```
 ## Lists Methods
+- [Sandbox API V3](https://apidocs.stex.com).
 ```
 profileInfo() // Get general information about the current user.
 wallets() // Get a list of user wallets.
