@@ -279,7 +279,7 @@ class Three extends StocksExchange {
     final public function publicCurrencies()
     {
         $url = $this->base_url."/public/currencies";
-        return $this->request([], $url);
+        return $this->request([], $url, 'get', 'url', false);
     }
 
     /**
@@ -289,7 +289,7 @@ class Three extends StocksExchange {
     final public function publicCurrenciesById($currencyId)
     {
         $url = $this->base_url."/public/currencies/$currencyId";
-        return $this->request([], $url);
+        return $this->request([], $url, 'get', 'url', false);
     }
 
     /**
@@ -298,7 +298,7 @@ class Three extends StocksExchange {
     final public function publicMarkets()
     {
         $url = $this->base_url."/public/markets";
-        return $this->request([], $url);
+        return $this->request([], $url, 'get', 'url', false);
     }
 
 
@@ -309,7 +309,7 @@ class Three extends StocksExchange {
     final public function publicCurrencyPairsList($code)
     {
         $url = $this->base_url."/public/currency_pairs/list/$code";
-        return $this->request([], $url);
+        return $this->request([], $url, 'get', 'url', false);
     }
 
     /**
@@ -319,7 +319,7 @@ class Three extends StocksExchange {
     final public function publicCurrencyPairsById($currencyPairId)
     {
         $url = $this->base_url."/public/currency_pairs/$currencyPairId";
-        return $this->request([], $url);
+        return $this->request([], $url, 'get', 'url', false);
     }
 
     /**
@@ -328,7 +328,7 @@ class Three extends StocksExchange {
     final public function publicTicker()
     {
         $url = $this->base_url."/public/ticker";
-        return $this->request([], $url);
+        return $this->request([], $url, 'get', 'url', false);
     }
 
     /**
@@ -338,7 +338,7 @@ class Three extends StocksExchange {
     final public function publicTickerById($currencyPairId)
     {
         $url = $this->base_url."/public/ticker/$currencyPairId";
-        return $this->request([], $url);
+        return $this->request([], $url, 'get', 'url', false);
     }
 
     /**
@@ -349,7 +349,7 @@ class Three extends StocksExchange {
     final public function publicTrades($currencyPairId, $params)
     {
         $url = $this->base_url."/public/trades/$currencyPairId";
-        return $this->request($params, $url);
+        return $this->request($params, $url, 'get', 'url', false);
     }
 
     /**
@@ -360,7 +360,7 @@ class Three extends StocksExchange {
     final public function publicOrderBook($currencyPairId, $params)
     {
         $url = $this->base_url."/public/trades/$currencyPairId";
-        return $this->request($params, $url);
+        return $this->request($params, $url, 'get', 'url', false);
     }
 
     /**
@@ -376,7 +376,7 @@ class Three extends StocksExchange {
         $url = $this->base_url."/public/chart/$currencyPairId/$candlesType";
         $params['timeStart'] = $timeStart;
         $params['timeEnd'] = $timeEnd;
-        return $this->request($params, $url);
+        return $this->request($params, $url, 'get', 'url', false);
     }
 
     /**
@@ -385,7 +385,7 @@ class Three extends StocksExchange {
     final public function publicPing()
     {
         $url = $this->base_url."/public/ping";
-        return $this->request([], $url);
+        return $this->request([], $url, 'get', 'url', false);
     }
 
 
@@ -394,9 +394,10 @@ class Three extends StocksExchange {
      * @param $url
      * @param string $method
      * @param string $type
+     * @param bool $auth
      * @return mixed|string
      */
-    public function request($params, $url, $method = 'get', $type = 'url')
+    public function request($params, $url, $method = 'get', $type = 'url', $auth = true)
     {
         sleep(Service::SLEEP_SECOND);
         $client = new Client([
@@ -406,14 +407,17 @@ class Three extends StocksExchange {
         $params = is_null($params) ? array() : $params;
         $post_data = self::$service->buildQuery($params);
         $url = $url.($post_data == '' ? '' : '?'.$post_data);
-        $options = array(
+        $options = [
             'debug' => $this->debug,
-            'headers' => array(
-                'Authorization' => 'Bearer ' . $this->getToken($client),
+            'headers' => [
                 'Accept' => 'application/json',
                 'User-Agent' => 'stocks.exchange-client',
-            )
-        );
+            ]
+        ];
+
+        if ($auth) {
+            $options['headers']['Authorization'] = 'Bearer ' . $this->getToken($client);
+        }
 
         if ($type == 'form') $options['form_params'] = $params;
         try {
