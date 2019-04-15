@@ -359,7 +359,7 @@ class Three extends StocksExchange {
      */
     final public function publicOrderBook($currencyPairId, $params)
     {
-        $url = $this->base_url."/public/trades/$currencyPairId";
+        $url = $this->base_url."/public/orderbook/$currencyPairId";
         return $this->request($params, $url, 'get', 'url', false);
     }
 
