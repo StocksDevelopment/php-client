@@ -162,7 +162,7 @@ class Three extends StocksExchange {
             "address" => $address
         ];
         if ($additional_address) {
-            $params['additional_address'] = $additional_address;
+            $params['additional_address_parameter'] = $additional_address;
         }
         return $this->request($params, $url, 'post', 'form');
     }
