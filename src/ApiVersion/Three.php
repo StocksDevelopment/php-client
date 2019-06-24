@@ -459,12 +459,24 @@ class Three extends StocksExchange {
                     'scope' => $this->option['scope'],
                 ],
             ]);
-            $this->currentToken = json_decode($request->getBody());
-            $this->currentToken->expires_in_date = date("Y-m-d H:i:s", time() + $this->currentToken->expires_in);
-            file_put_contents(self::JSON_SETTINGS, json_encode($this->currentToken));
+            if ($request->getStatusCode() == 200) {
+                $this->currentToken = json_decode($request->getBody());
+                $this->currentToken->expires_in_date = date("Y-m-d H:i:s", time() + $this->currentToken->expires_in);
+                file_put_contents(self::JSON_SETTINGS, json_encode($this->currentToken));
+            } else {
+                $this->destroySettings();
+            }
         } catch (\Exception $e) {
+            $this->destroySettings();
             throw new \Error($e->getMessage());
         }
         return $this->currentToken->access_token;
+    }
+
+    private function destroySettings()
+    {
+        if (file_exists(self::JSON_SETTINGS)) {
+            unlink(self::JSON_SETTINGS);
+        }
     }
 }
