@@ -196,7 +196,7 @@ use Stocks\ApiVersion\S2s;
 $se = new S2s(
     [
         'tokenObject' => [
-            'access_token' => '',
+            'access_token' => '<access_token>',
         ],
         'accessTokenUrl' => 'https://api3.stex.com/oauth/token',
         'scope' => 'profile trade withdrawal reports push settings'
