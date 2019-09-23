@@ -188,6 +188,23 @@ publicOrderBook() // Orderbook for given currency pair
 publicChart() // A list of candles for given currency pair
 publicPing() // Test API is working and get server time
 ```
+
+### Example V3 Server-To-Server integrations
+```php
+<?php
+use Stocks\ApiVersion\S2s;
+$se = new S2s(
+    [
+        'tokenObject' => [
+            'access_token' => '',
+        ],
+        'accessTokenUrl' => 'https://api3.stex.com/oauth/token',
+        'scope' => 'profile trade withdrawal reports push settings'
+    ]
+);
+print_r($se->publicPing());
+```
+
 ## Common Errors
 ### Here is a list with common errors and their descriptions:
   1.    Invalid Key - not generated key or the key does not correspond to the a user
