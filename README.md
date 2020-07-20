@@ -13,7 +13,7 @@ https://api3.stex.com
 ```
 
 ## Getting started
-- [Sandbox API V3](https://apidocs.stex.com).
+- [Sandbox API](https://apidocs.stex.com).
 
 To get started with the PHP client, here's a snippet for creating a client with existing credentials:
 > In order to use the API functions, you must have an API key and API secret, which is generated in the user profile.
